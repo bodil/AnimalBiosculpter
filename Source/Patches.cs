@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using HarmonyLib;
 using RimWorld;
@@ -26,12 +25,11 @@ namespace AnimalBiosculpter.Patches
 
         static AccessTools.FieldRef<CompBiosculpterPod, Pawn> biotunedToRef = AccessTools.FieldRefAccess<CompBiosculpterPod, Pawn>("biotunedTo");
 
-        static AccessTools.FieldRef<CompBiosculpterPod, List<FloatMenuOption>> cycleEligiblePawnOptionsRef = AccessTools.FieldRefAccess<CompBiosculpterPod, List<FloatMenuOption>>("cycleEligiblePawnOptions");
-
         static void Postfix(CompBiosculpterPod_Cycle cycle, ref List<FloatMenuOption> options, bool shortCircuit, CompBiosculpterPod __instance, ref bool __result)
         {
+            var cache = cachedAnyPawnEligibleRef(__instance)[cycle];
             int ticksGame = Find.TickManager.TicksGame;
-            if (shortCircuit && (float)ticksGame < cachedAnyPawnEligibleRef(__instance)[cycle].gameTime + 2f)
+            if (shortCircuit && (float)ticksGame < cache.gameTime + 2f)
             {
                 return;
             }
@@ -46,19 +44,19 @@ namespace AnimalBiosculpter.Patches
                         var select = AccessTools.Method(typeof(CompBiosculpterPod), "SelectPawnCycleOption", new Type[] { typeof(Pawn), typeof(CompBiosculpterPod_Cycle), typeof(FloatMenuOption).MakeByRefType() });
                         var selectParams = new object[] { pawn, cycle, null! };
                         bool selectResult = (bool)select.Invoke(__instance, selectParams);
-                        FloatMenuOption option = (FloatMenuOption)selectParams[2];
                         if (selectResult && shortCircuit)
                         {
-                            cachedAnyPawnEligibleRef(__instance)[cycle].anyEligible = true;
-                            __result = cachedAnyPawnEligibleRef(__instance)[cycle].anyEligible;
+                            cache.anyEligible = true;
+                            __result = true;
                             return;
                         }
-                        cycleEligiblePawnOptionsRef(__instance).Add(option);
+                        options.Add((FloatMenuOption)selectParams[2]);
                     }
                 }
             }
-            cachedAnyPawnEligibleRef(__instance)[cycle].anyEligible = (cycleEligiblePawnOptionsRef(__instance).Count > 0);
-            __result = cachedAnyPawnEligibleRef(__instance)[cycle].anyEligible;
+            var anyEligible = options.Count > 0;
+            cache.anyEligible = anyEligible;
+            __result = anyEligible;
         }
     }
 }
