@@ -54,20 +54,15 @@ namespace AnimalBiosculpter.Patches
     [HarmonyPatch(typeof(CompBiosculpterPod), "SelectPawnsForCycleOptions")]
     internal static class CompBiosculpterPod_SelectPawnsForCycleOptions_Patch
     {
-        static AccessTools.FieldRef<CompBiosculpterPod, Dictionary<CompBiosculpterPod_Cycle, CacheAnyPawnEligibleCycle>> cachedAnyPawnEligibleRef = AccessTools.FieldRefAccess<CompBiosculpterPod, Dictionary<CompBiosculpterPod_Cycle, CacheAnyPawnEligibleCycle>>("cachedAnyPawnEligible");
-
-        static AccessTools.FieldRef<CompBiosculpterPod, Pawn> biotunedToRef = AccessTools.FieldRefAccess<CompBiosculpterPod, Pawn>("biotunedTo");
-
-        static void Postfix(CompBiosculpterPod_Cycle cycle, ref List<FloatMenuOption> options, bool shortCircuit, CompBiosculpterPod __instance, ref bool __result)
+        static void Postfix(CompBiosculpterPod_Cycle cycle, ref List<FloatMenuOption> options, bool shortCircuit, Dictionary<CompBiosculpterPod_Cycle, CacheAnyPawnEligibleCycle> ___cachedAnyPawnEligible, Pawn ___biotunedTo, CompBiosculpterPod __instance, ref bool __result)
         {
-            var cache = cachedAnyPawnEligibleRef(__instance)[cycle];
             int ticksGame = Find.TickManager.TicksGame;
-            if (shortCircuit && (float)ticksGame < cache.gameTime + 2f)
+            if (shortCircuit && (float)ticksGame < ___cachedAnyPawnEligible[cycle].gameTime + 2f)
             {
                 return;
             }
 
-            if (biotunedToRef(__instance) == null)
+            if (___biotunedTo == null)
             {
                 var pawns = __instance.parent.Map.mapPawns.SpawnedPawnsInFaction(Faction.OfPlayer);
                 foreach (Pawn pawn in pawns)
@@ -79,7 +74,7 @@ namespace AnimalBiosculpter.Patches
                         bool selectResult = (bool)select.Invoke(__instance, selectParams);
                         if (selectResult && shortCircuit)
                         {
-                            cache.anyEligible = true;
+                            ___cachedAnyPawnEligible[cycle].anyEligible = true;
                             __result = true;
                             return;
                         }
@@ -88,7 +83,7 @@ namespace AnimalBiosculpter.Patches
                 }
             }
             var anyEligible = options.Count > 0;
-            cache.anyEligible = anyEligible;
+            ___cachedAnyPawnEligible[cycle].anyEligible = anyEligible;
             __result = anyEligible;
         }
     }
