@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patch>
+    <Operation Class="PatchOperationAdd">
+        <xpath>
+            Defs/ThingDef[@ParentName="BuildingBase"]/comps/li[@Class="CompProperties_BiosculpterPod_HealingCycle"]/compClass[text()="CompBiosculpterPod_MedicCycle"]/parent::li/conditionsToPossiblyCure
+        </xpath>
+        <value>
+            <li>Animal_Flu</li>
+            <li>Animal_Plague</li>
+        </value>
+    </Operation>
+    <Operation Class="PatchOperationAdd">
+        <xpath>
+            Defs/ThingDef[@ParentName="BuildingBase"]/comps/li[@Class="CompProperties_BiosculpterPod_HealingCycle"]/compClass[text()="CompBiosculpterPod_RegenerationCycle"]/parent::li/bodyPartsToRestore
+        </xpath>
+        <value>
+            <li>Paw</li>
+            <li>Tail</li>
+        </value>
+    </Operation>
+</Patch>
