@@ -14,20 +14,38 @@
         <LangVersion>10.0</LangVersion>
         <Nullable>enable</Nullable>
         <TargetFramework>net48</TargetFramework>
-        <OutputPath>..\Mod\1.4\Assemblies\</OutputPath>
+        <OutputPath>..\Mod\1.5\Assemblies\</OutputPath>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
         <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
     </PropertyGroup>
+
+    <Target Name="Rimworld14" AfterTargets="Build">
+        <MSBuild Projects="$(MSBuildProjectFile)"
+            Properties="OutputPath=..\Mod\1.4\Assemblies;DefineConstants=RIMWORLD_1_4"
+            RunEachTargetSeparately="true" />
+    </Target>
 
     <ItemGroup>
         <PackageReference Include="Lib.Harmony" Version="2.0.*" />
     </ItemGroup>
 
-    <ItemGroup>
-        <Reference Include="Assembly-CSharp">
-            <HintPath>$(RIMWORLD_LIBS)\1.4\Assembly-CSharp.dll</HintPath>
-            <Private>False</Private>
-        </Reference>
-    </ItemGroup>
+    <Choose>
+        <When Condition="$(DefineConstants.Contains('RIMWORLD_1_4'))">
+            <ItemGroup>
+                <Reference Include="Assembly-CSharp">
+                    <HintPath>$(RIMWORLD_LIBS)\1.4\Assembly-CSharp.dll</HintPath>
+                    <Private>False</Private>
+                </Reference>
+            </ItemGroup>
+        </When>
+        <Otherwise>
+            <ItemGroup>
+                <Reference Include="Assembly-CSharp">
+                    <HintPath>$(RIMWORLD_LIBS)\1.5\Assembly-CSharp.dll</HintPath>
+                    <Private>False</Private>
+                </Reference>
+            </ItemGroup>
+        </Otherwise>
+    </Choose>
 
 </Project>
