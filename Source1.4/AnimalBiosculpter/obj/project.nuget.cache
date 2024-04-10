@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "JABgsx9CQqYdwethyF0TlASVWyiFTsC/4Ko41/QQVAOFIfcTJqB8KLx0CEuj6kkSdcqIcgzDLAXhev2/34VHTg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Maxim\\OneDrive\\Desktop\\AnimalBiosculpter-master\\Source1.4\\AnimalBiosculpter\\AnimalBiosculpter.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Maxim\\.nuget\\packages\\krafs.publicizer\\2.2.1\\krafs.publicizer.2.2.1.nupkg.sha512",
+    "C:\\Users\\Maxim\\.nuget\\packages\\krafs.rimworld.ref\\1.4.3901\\krafs.rimworld.ref.1.4.3901.nupkg.sha512",
+    "C:\\Users\\Maxim\\.nuget\\packages\\lib.harmony\\2.3.3\\lib.harmony.2.3.3.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,7 @@
+C:\Users\Maxim\OneDrive\Desktop\AnimalBiosculpter-master\Mod\1.4\Assemblies\AnimalBiosculpter.dll
+C:\Users\Maxim\OneDrive\Desktop\AnimalBiosculpter-master\Source\AnimalBiosculpter\obj\Debug\AnimalBiosculpter.csproj.AssemblyReference.cache
+C:\Users\Maxim\OneDrive\Desktop\AnimalBiosculpter-master\Source\AnimalBiosculpter\obj\Debug\AnimalBiosculpter.csproj.CoreCompileInputs.cache
+C:\Users\Maxim\OneDrive\Desktop\AnimalBiosculpter-master\Source\AnimalBiosculpter\obj\Debug\AnimalBiosculpter.dll
+C:\Users\Maxim\OneDrive\Desktop\AnimalBiosculpter-master\Source1.4\AnimalBiosculpter\obj\Debug\AnimalBiosculpter.csproj.AssemblyReference.cache
+C:\Users\Maxim\OneDrive\Desktop\AnimalBiosculpter-master\Source1.4\AnimalBiosculpter\obj\Debug\AnimalBiosculpter.csproj.CoreCompileInputs.cache
+C:\Users\Maxim\OneDrive\Desktop\AnimalBiosculpter-master\Source1.4\AnimalBiosculpter\obj\Debug\AnimalBiosculpter.dll
