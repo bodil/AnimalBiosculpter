@@ -1,9 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-
-    <!-- Make a folder, point $env:RIMWORLD_LIBS at it, and copy the Managed folder
-         out of the 1.4 version of Rimworld, and rename it to its respective
-         version number, so you should have $env:RIMWORLD_LIBS\1.4 -->
-
     <PropertyGroup>
         <PackageId>bodilpwnz.AnimalBiosculpter</PackageId>
         <Version>1.0.1</Version>
@@ -26,24 +21,18 @@
     </Target>
 
     <ItemGroup>
-        <PackageReference Include="Lib.Harmony" Version="2.0.*" />
+        <PackageReference Include="Lib.Harmony" Version="2.*" />
     </ItemGroup>
 
     <Choose>
         <When Condition="$(DefineConstants.Contains('RIMWORLD_1_4'))">
             <ItemGroup>
-                <Reference Include="Assembly-CSharp">
-                    <HintPath>$(RIMWORLD_LIBS)\1.4\Assembly-CSharp.dll</HintPath>
-                    <Private>False</Private>
-                </Reference>
+                <PackageReference Include="Krafs.Rimworld.Ref" Version="1.4.*" />
             </ItemGroup>
         </When>
         <Otherwise>
             <ItemGroup>
-                <Reference Include="Assembly-CSharp">
-                    <HintPath>$(RIMWORLD_LIBS)\1.5\Assembly-CSharp.dll</HintPath>
-                    <Private>False</Private>
-                </Reference>
+                <PackageReference Include="Krafs.Rimworld.Ref" Version="1.5.*" />
             </ItemGroup>
         </Otherwise>
     </Choose>
