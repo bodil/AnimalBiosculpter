@@ -1,2 +1,3 @@
-Common/*/Assemblies/*.dll
-Common/*/Assemblies/*.pdb
+Mod/*/Assemblies/*.dll
+Mod/*/Assemblies/*.pdb
+AnimalBiosculpter.sln
