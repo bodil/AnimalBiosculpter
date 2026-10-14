@@ -1,3 +1,4 @@
 Mod/*/Assemblies/*.dll
 Mod/*/Assemblies/*.pdb
+Mod/*/Assemblies/*.json
 AnimalBiosculpter.sln

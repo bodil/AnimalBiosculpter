@@ -72,7 +72,7 @@ namespace AnimalBiosculpter.Patches
                     {
                         var select = AccessTools.Method(typeof(CompBiosculpterPod), "SelectPawnCycleOption", new Type[] { typeof(Pawn), typeof(CompBiosculpterPod_Cycle), typeof(FloatMenuOption).MakeByRefType() });
                         var selectParams = new object[] { pawn, cycle, null! };
-                        bool selectResult = (bool)select.Invoke(__instance, selectParams);
+                        bool selectResult = (bool)select.Invoke(__instance, selectParams)!;
                         if (selectResult && shortCircuit)
                         {
                             ___cachedAnyPawnEligible[cycle].anyEligible = true;

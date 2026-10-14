@@ -8,8 +8,8 @@
         <OutputType>Library</OutputType>
         <LangVersion>10.0</LangVersion>
         <Nullable>enable</Nullable>
-        <TargetFramework>net48</TargetFramework>
-        <OutputPath>..\Mod\1.6\Assemblies\</OutputPath>
+        <TargetFramework>net10.0</TargetFramework>
+        <OutputPath>..\Mod\1.7\Assemblies\</OutputPath>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
         <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
     </PropertyGroup>
@@ -23,6 +23,12 @@
     <Target Name="Rimworld15" AfterTargets="Build">
         <MSBuild Projects="$(MSBuildProjectFile)"
             Properties="OutputPath=..\Mod\1.5\Assemblies;DefineConstants=RIMWORLD_1_5"
+            RunEachTargetSeparately="true" />
+    </Target>
+
+    <Target Name="Rimworld16" AfterTargets="Build">
+        <MSBuild Projects="$(MSBuildProjectFile)"
+            Properties="OutputPath=..\Mod\1.6\Assemblies;DefineConstants=RIMWORLD_1_6"
             RunEachTargetSeparately="true" />
     </Target>
 
@@ -41,9 +47,14 @@
                 <PackageReference Include="Krafs.Rimworld.Ref" Version="1.5.*" />
             </ItemGroup>
         </When>
-        <Otherwise>
+        <When Condition="$(DefineConstants.Contains('RIMWORLD_1_6'))">
             <ItemGroup>
                 <PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.*" />
+            </ItemGroup>
+        </When>
+        <Otherwise>
+            <ItemGroup>
+                <PackageReference Include="Krafs.Rimworld.Ref" Version="1.7.4977-alpha.1" />
             </ItemGroup>
         </Otherwise>
     </Choose>
