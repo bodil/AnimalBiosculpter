@@ -16,24 +16,37 @@
 
     <Target Name="Rimworld14" AfterTargets="Build">
         <MSBuild Projects="$(MSBuildProjectFile)"
-            Properties="OutputPath=..\Mod\1.4\Assemblies;DefineConstants=RIMWORLD_1_4"
-            RunEachTargetSeparately="true" />
+            Targets="Restore"
+            Properties="MSBuildProjectExtensionsPath=$(MSBuildProjectDirectory)\obj\1.4\;DefineConstants=RIMWORLD_1_4;TargetFramework=net48" />
+        <MSBuild Projects="$(MSBuildProjectFile)"
+            Targets="Build"
+            Properties="MSBuildProjectExtensionsPath=$(MSBuildProjectDirectory)\obj\1.4\;OutputPath=..\Mod\1.4\Assemblies;DefineConstants=RIMWORLD_1_4;TargetFramework=net48" />
     </Target>
 
     <Target Name="Rimworld15" AfterTargets="Build">
         <MSBuild Projects="$(MSBuildProjectFile)"
-            Properties="OutputPath=..\Mod\1.5\Assemblies;DefineConstants=RIMWORLD_1_5"
-            RunEachTargetSeparately="true" />
+            Targets="Restore"
+            Properties="MSBuildProjectExtensionsPath=$(MSBuildProjectDirectory)\obj\1.5\;DefineConstants=RIMWORLD_1_5;TargetFramework=net48" />
+        <MSBuild Projects="$(MSBuildProjectFile)"
+            Targets="Build"
+            Properties="MSBuildProjectExtensionsPath=$(MSBuildProjectDirectory)\obj\1.5\;OutputPath=..\Mod\1.5\Assemblies;DefineConstants=RIMWORLD_1_5;TargetFramework=net48" />
     </Target>
 
     <Target Name="Rimworld16" AfterTargets="Build">
         <MSBuild Projects="$(MSBuildProjectFile)"
-            Properties="OutputPath=..\Mod\1.6\Assemblies;DefineConstants=RIMWORLD_1_6"
-            RunEachTargetSeparately="true" />
+            Targets="Restore"
+            Properties="MSBuildProjectExtensionsPath=$(MSBuildProjectDirectory)\obj\1.6\;DefineConstants=RIMWORLD_1_6;TargetFramework=net48" />
+        <MSBuild Projects="$(MSBuildProjectFile)"
+            Targets="Build"
+            Properties="MSBuildProjectExtensionsPath=$(MSBuildProjectDirectory)\obj\1.6\;OutputPath=..\Mod\1.6\Assemblies;DefineConstants=RIMWORLD_1_6;TargetFramework=net48" />
     </Target>
 
     <ItemGroup>
         <PackageReference Include="Lib.Harmony" Version="2.*" />
+        <!-- Provides the .NET Framework 4.8 targeting pack for the net48
+             builds when building on non-Windows platforms. -->
+        <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net48" Version="1.0.3"
+            PrivateAssets="all" />
     </ItemGroup>
 
     <Choose>
