@@ -45,7 +45,9 @@
         <PackageReference Include="Lib.Harmony" Version="2.*" />
         <!-- Provides the .NET Framework 4.8 targeting pack for the net48
              builds when building on non-Windows platforms. -->
-        <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net48" Version="1.0.3"
+        <PackageReference
+            Include="Microsoft.NETFramework.ReferenceAssemblies.net48"
+            Version="1.0.3"
             PrivateAssets="all" />
     </ItemGroup>
 
